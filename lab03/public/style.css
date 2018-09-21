@@ -1,0 +1,19 @@
+h1 {
+	font-family: "Impact";
+	color: purple;
+}
+
+h1:hover {
+	background-color: cyan;
+}
+
+span.fun {
+	font-family: "Comic Sans MS";
+	font-weight: bold;
+	background-color: cyan;
+	padding: 4px 12px 6px 12px;
+}
+
+span.fun:hover {
+	background-color: #83ff00;
+}
