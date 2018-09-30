@@ -1,17 +1,34 @@
+/* This rule sets the font size and typeface preferences */
+body {
+	font: 16px "Comic Sans MS", cursive;
+	/*background: url("ocean-250px-lighter.jpg");*/
+	background: url("water.gif");
+}
+
 p {
-	color: blue;
+	/*color: blue;*/
+	color: #00f;
+}
+
+p:before {
+	content: url("lifeRing-40px.png");
 }
 
 strong {
-	color: red;
+	background-color: #ddf;
+	/*color: red;*/
+	color: #f00;
+	font: 2em serif;
 }
 
 .carrot {
-	color: orange;
+	/*color: orange;*/
+	color: #fa0;
 }
 
 .spinach {
-	color: green;
+	/*color: green;*/
+	color: #080;
 }
 
 #first {
