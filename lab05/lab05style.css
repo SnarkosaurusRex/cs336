@@ -1,27 +1,26 @@
 body {
-    font: 24px Helvetica;
+    font: 32px Helvetica;
     background: #999999;
 }
 
 #main {
-    min-height: 500px;  /*change to 360px(??)*/
+    min-height: 360px;
     margin: 0px;
     padding: 0px;
     display: flex;
     flex-flow: row;
+    font-size: 22px;
 }
 
 #main > article {
-    /*margin: 4px;*/
     padding: 20px;
     border: 1px solid black;
-    background: #dddd88;
+    background: turquoise; /* the original color was gross, so I changed it */
     flex: 3 1 60%;
     order: 2;
 }
 
 #main > nav {
-    /*margin: 4px;*/
     padding: 20px;
     border: 1px solid black;
     background: #ccccff;
@@ -31,7 +30,6 @@ body {
 }
 
 #main > aside {
-    /*margin: 4px;*/
     padding: 20px;
     border: 1px solid black;
     background: #ccccff;
@@ -42,9 +40,8 @@ body {
 
 header {
     display: block;
-    /*margin: 4px;*/
     padding: 25px;
-    min-height: 90px;
+    min-height: 40px; /* 90px minus padding */
     border: 1px solid black;
     background: #ffeebb;
     font-weight: bold;  /*change this to use h1 tag instead? (if so, might need to mess with h1's margins/padding) */
@@ -52,9 +49,8 @@ header {
 
 footer {
     display: block;
-    /*margin: 4px;*/
     padding: 20px;
-    min-height: 90px;
+    min-height: 50px; /* 90px minus padding */
     border: 1px solid black;
     background: #ffeebb;
     font-size: 10px;
@@ -66,11 +62,6 @@ footer {
         flex-direction: column;
     }
 
-    #main > nav {
-        text-align: left;
-        order: 0;
-    }
-
     #main > article, #main > aside {
     /* Return them to document order */
         order: 1;
@@ -79,5 +70,16 @@ footer {
     #main > nav, #main > aside, header, footer {
         min-height: 50px;
         max-height: 50px;
+    }
+
+    #main > nav {
+        order: 0;
+        text-align: left;
+        min-height: 80px;
+    }
+
+    #main > article {
+    	min-height: 200px;
+    	max-height: 215px;
     }
 }
