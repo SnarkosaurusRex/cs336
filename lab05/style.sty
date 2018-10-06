@@ -1,0 +1,79 @@
+// Variables:
+crm = #ffeebb // yellowish cream color
+prpl = #ccccff // purdy light purple
+pad = 20px
+bord = 1px solid black
+
+
+body
+    font: 32px Helvetica
+    background: #999999
+
+#main
+    min-height: 360px
+    margin: 0px
+    padding: 0px
+    display: flex
+    flex-flow: row
+    font-size: 22px
+
+    article
+        padding: pad
+        border: bord
+        background: turquoise /*! the original color was gross, so I changed it */
+        flex: 3 1 60%
+        order: 2
+
+    nav
+        padding: pad
+        border: bord
+        background: prpl
+        flex: 1 6 20%
+        order: 1
+        text-align: right
+
+    aside
+        padding: pad
+        border: bord
+        background: prpl
+        flex: 1 6 20%
+        order: 3
+        font-style: italic
+
+header
+    display: block
+    padding: 25px
+    min-height: 40px // 90px minus padding
+    border: bord
+    background: crm
+    font-weight: bold
+
+footer
+    display: block
+    padding: pad
+    min-height: 50px // 90px minus padding
+    border: bord
+    background: crm
+    font-size: 10px
+
+/* Too narrow to support three columns */
+@media all and (max-width: 640px)
+    #main, #page
+        flex-direction: column
+
+    #main > article, #main > aside
+    /* Return them to document order */
+        order: 1
+
+    #main > nav, #main > aside, header, footer
+        min-height: 50px
+        max-height: 50px
+
+    #main > nav
+        order: 0
+        text-align: left
+        min-height: 80px
+
+    #main > article
+    	min-height: 200px
+    	max-height: 215px
