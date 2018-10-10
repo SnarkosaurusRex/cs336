@@ -1,0 +1,22 @@
+---Exercise 6.1---
+a.) Identify the request methods that you can and can’t test using the two tools listed above. If a method cannot be testing using a particular tool, explain why this is the case. List the Curl commands you used successfully.
+	Only GET requests show up in the browser; for the rest, you have to use curl.
+	Curl commands used successfully:
+		curl -X GET localhost:3000
+		curl -X POST localhost:3000
+		curl -X PUT localhost:3000/request
+		curl -X DELETE localhost:3000/request
+
+	This is what happened when I tried to run the HEAD command:
+		ljh27@gold22:~/cs336/cs336/lab06$ curl -X HEAD localhost:3000
+		Warning: Setting custom HTTP method to HEAD with -X/--request may not work the 
+		Warning: way you want. Consider using -I/--head instead.
+		curl: (18) transfer closed with 13 bytes remaining to read
+
+
+
+b.) What is the most appropriate HTTP response code for pages that aren’t defined by an Express route?
+
+
+
+
