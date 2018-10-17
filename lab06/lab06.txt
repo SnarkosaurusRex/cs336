@@ -3,20 +3,28 @@ a.) Identify the request methods that you can and can’t test using the two too
 	Only GET requests show up in the browser; for the rest, you have to use curl.
 	Curl commands used successfully:
 		curl -X GET localhost:3000
+		curl -X HEAD localhost:3000/ -I
 		curl -X POST localhost:3000
 		curl -X PUT localhost:3000/request
 		curl -X DELETE localhost:3000/request
-
-	This is what happened when I tried to run the HEAD command:
-		ljh27@gold22:~/cs336/cs336/lab06$ curl -X HEAD localhost:3000
-		Warning: Setting custom HTTP method to HEAD with -X/--request may not work the 
-		Warning: way you want. Consider using -I/--head instead.
-		curl: (18) transfer closed with 13 bytes remaining to read
+		curl -X PUT localhost:3000/request -d '{"cake":"chocolate"}' -H 'Content-Type: application/json'
+		curl -X DELETE localhost:3000/request -d '{"cake":"chocolate"}' -H 'Content-Type: application/json'
+		curl -X POST localhost:3000 -d '{"unicorn":"meow"}' -H 'Content-Type: application/json'
 
 
 
 b.) What is the most appropriate HTTP response code for pages that aren’t defined by an Express route?
+	I really want to say 418 ("I'm a teapot"), but I feel like 501 ("Not Implemented") or 400 ("Bad Request") is probably a more correct answer to this question (since the lab instructions previously stated not to use 404 ("Not Found")).
 
 
+
+---Exercise 6.2---
+a.) What HTTP methods do forms support?
+		GET, POST
+
+
+b.) How is the form data being passed back to the server and what syntactic form does it take? Is the data modified in any way?
+		The form data is being passed back to the server via the HTTP POST method. The server receives it as a list of key/value items.
+		The data is not modified in any way, unless maybe there's some built-in security stuff that happens or something.
 
 

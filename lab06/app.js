@@ -1,60 +1,69 @@
 //Setup
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const bodyParser = require('body-parser');
+const httpStatus = require('http-status-codes');
+const app = express();
+const port = 3000;
+app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
 
 app.get('/', function (req, res) {
-  res.send('Hello, Lab 6!')
-})
+  res.send('Hello, Lab 6!' + "\n");
+});
+
 
 app.head('/', function (req, res) {
-	res.status(200).send("Got a HEAD request");
-})
+    res.status(200).send("Got a HEAD request\n");
+});
+
 
 app.post('/', function (req, res) {
-  res.send('Got a POST request')
-})
+  if (req.body !== null && req.body !== "") {
+    res.send('Got a POST request with message: ' + req.body + "\n");
+  }
+  else {
+    res.send('Got a POST request\n');
+  }
+});
+
 
 app.put('/request', function (req, res) {
-  res.send('Got a PUT request at /request')
-})
+  if (req.body !== "" || req.body !== null) {
+    res.send('Got a PUT request at /request with message: ' + req.body + "\n");
+  }
+  else {
+    res.send('Got a PUT request at /request\n');
+  }
+});
+
 
 app.delete('/request', function (req, res) {
-  res.send('Got a DELETE request at /request')
-})
+  if (req.body !== null && req.body !== "") {
+    res.send('Got a DELETE request with message: ' + req.body + "\n");
+  }
+  else {
+    res.send('Got a DELETE request at /request\n');
+  }
+});
 
 
+app.get('/my-handling-form-page', function(req, res) {
+    res.redirect('/forms');
+});
 
-/* stuff copied from homework1
-	//Routes
-	app.get('/people', function (req, res) {
-		res.send(squad)
-	})
 
-	app.get('/person/:id', function (req, res) {
-		var result = getBylogId(req.params['id']);
-		if (result == null) {
-			res.sendStatus(404);
-		}
-		res.json(result);
-	})
+app.post('/forms', function(req, res) {
+    res.send('Hello, form POST!<br>Posted message: <code>'
+       + req.body.user_message + '</code>');
+});
 
-	app.get('/person/:id/name', function (req, res) {
-		var result = getBylogId(req.params['id']);
-		if (result == null || result.fname == null || result.lname == null) {
-			res.sendStatus(404);
-		}
-		res.send(String.raw`{ "full name": "` + result.fname + ' ' + result.lname + String.raw`" }`);
-	})
 
-	app.get('/person/:id/years', function (req, res) {
-		var result = getBylogId(req.params['id']);
-		if (result == null || result.yrs == null || isNaN(result.yrs)) {
-			res.sendStatus(404);
-		}
-		res.send(String.raw`{ "seniority": ` + result.yrs + ' }');
-	})
-*/
+app.all('*', function(req, res) {
+  res.sendStatus(httpStatus.BAD_REQUEST);
+});
 
