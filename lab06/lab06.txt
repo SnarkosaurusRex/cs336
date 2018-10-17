@@ -25,6 +25,6 @@ a.) What HTTP methods do forms support?
 
 b.) How is the form data being passed back to the server and what syntactic form does it take? Is the data modified in any way?
 		The form data is being passed back to the server via the HTTP POST method. The server receives it as a list of key/value items.
-		The data is not modified in any way, unless maybe there's some built-in security stuff that happens or something.
+		The data is not modified in any way.
 
 

@@ -53,13 +53,12 @@ app.delete('/request', function (req, res) {
 
 
 app.get('/my-handling-form-page', function(req, res) {
-    res.redirect('/forms');
+  res.redirect('/forms');
 });
 
 
 app.post('/forms', function(req, res) {
-    res.send('Hello, form POST!<br>Posted message: <code>'
-       + req.body.user_message + '</code>');
+  res.send('Hello, form POST!\n' + req.body.user_name + ' (' + req.body.user_mail + ') says \"' + req.body.user_message + '\"\n');
 });
 
 
