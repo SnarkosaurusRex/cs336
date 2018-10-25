@@ -1,10 +1,7 @@
 // Put your JavaScript code here (rather than in the HTML file).
 
 var data = [
-  // {id: 1, author: "Pete Hunt", text: "This is one comment"},
   {id: 1, author: "Pete Hunt", text: "A Møøse once bit my sister..."},
-  // {id: 2, author: "Jordan Walke", text: "This is *another* comment"}
-  // {id: 2, author: "Someone who just got sacked", text: "Wi nøt trei a høliday in Sweden this yër ?"}
   {id: 2, author: "Jordan Walke", text: "*No realli!*...Mynd you, møøse bites Kan be pretty nasti..."}
 ];
 
