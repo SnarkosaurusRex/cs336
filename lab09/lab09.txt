@@ -1,0 +1,52 @@
+LAB 9
+
+---- Exercise 9.1 ----
+
+a.) What good has this bundling done? How big is the new bundle file? Check the Chrome DevTools network log to see what files are being loaded.
+	Having everything in one file makes it easier to distribute/pass around/whatever. Bundling also makes sure that dependencies are loaded efficiently (i.e. they don’t get loaded in more than once).
+	Size of bundle.js = 6 KB (6215 bytes) (209 lines)
+	Files being loaded: base.css, react.js, react-dom.js, jquery.min.js, remarkable.min.js, bundle.js
+
+
+b.) What role did Babel play in the bundling?
+	The Babel loader pre-processes files containing JSX and converts it into JavaScript, which is then included in the bundle file.
+
+
+c.) Can you just load file:///path…/index.html using the browser? Why or why not?
+	Technically, yes, you CAN just load the file using the browser. However, in this case, doing so won’t get you very far. :P
+	Just opening the version of index.html in the app directory (i.e. app/index.html) in the browser displays a blank page (the tab shows the correct title, though) with a console error (ERR_FILE_NOT_FOUND) because it is unable to access/load the bundle.js file.
+	Just opening the version of index.html in the dist directory (i.e. dist/index.html) displays a page with just the “Comments” header and the comment form, and throws errors in the console every 2 seconds (i.e. the set poll interval) because it is unable to load the comments from the server. Likewise, it also throws errors in the console if you try to post a new comment. Essentially, the server isn’t running, so the page can’t interact with it.
+
+
+d.) In webpack.config.js, what does the loader test entry test: /\.jsx?$/ do?
+	It uses regular expression matching to find all the .js and .jsx files (not including stuff in node_modules) and tells the babel loader to run on them.
+
+
+---- Exercise 9.2 ----
+
+a.) Check out the new dist/index.html and dist/bundle.js. How are they different from the previous versions?
+	The first 51 lines of the new version of bundle.js are exactly the same as the first 51 lines of the previous version of bundle.js. Past that they start to differ more. The previous version included CommentBox, CommentList, CommentForm, Comment, and the ReactDOM.render() call all together in the /* 1 */ section, and only had that one labeled section. The new version has 254 such sections, and CommentBox, CommentList, CommentForm, Comment, and the ReactDOM.render() call are separate sections from each other. The new version is also roughly 212.85 times larger in size (approx. 207.14 times more lines) than the previous version.
+	The new version of index.html is different from the previous version in that it no longer has to explicitly load in all of the library scripts or css files (i.e., the <head> section no longer contains any <script> or <link> tags).
+
+
+b.) What good is it to replace the CDN library loads with module imports?
+	Module imports are less redundant because the modules can be shared rather than having to explicitly load each script in each file.
+
+
+c.) Check the network log. How many of the new modules you built are being loaded? How about the CSS file?
+	Only bundle.js is being loaded.
+
+
+---- Exercise 9.3 ----
+
+a.) Try out both ports and explain the difference between them.
+	i.) localhost:3001 — Try editing one of the React module files. Explain what happens, both to the displayed SPA webpage and to the bundle/index files.
+		The displayed SPA webpage updated to show my changes, but the bundle/index files didn't change.
+
+	ii.) localhost:3000 — Try loading /api/comments. Explain what you get. Does the SPA page running on this port change (due to the edits made above) as well?
+		Loading /api/comments displays the list of comments in JSON form. The SPA page running on this port does not change due to the edits I made.
+
+
+b.) Is it worth all this trouble to build a development configuration?
+		This part of the lab was significantly less troublesome than the previous parts, so it wasn't really that much trouble to build this development configuration, in which case, yes, it's nifty to have it automatically update when changes are made to the files.
+

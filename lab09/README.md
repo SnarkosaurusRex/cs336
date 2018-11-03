@@ -1,8 +1,8 @@
-This sample code supports Calvin College
+This is Lab 9 for 
 [CS 336](https://cs.calvin.edu/courses/cs/336/kvlinden)
-[Unit 8: React](https://cs.calvin.edu/courses/cs/336/kvlinden/08react/index.html).
+.
 
-These are the starter files for an implementation of the (old) Facebook ReactJS tutorial -
+This is built off of the starter files for an implementation of the (old) Facebook ReactJS tutorial -
 the comment list:
 
 - https://cs.calvin.edu/courses/cs/336/kvlinden/08react/backup/Tutorial_React.html
