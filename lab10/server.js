@@ -18,7 +18,6 @@ var MongoClient = require('mongodb').MongoClient;
 var app = express();
 var db;
 
-// var COMMENTS_FILE = path.join(__dirname, 'comments.json');
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -44,66 +43,35 @@ app.get('/api/comments', function(req, res) {
             console.error(err);
             process.exit(1);
         }
-        // res.json(JSON.parse(data));
         res.json(data);
     });
 });
 
 
 app.post('/api/comments', function(req, res) {
-    // fs.readFile(COMMENTS_FILE, function(err, data) {
-    //     if (err) {
-    //         console.error(err);
-    //         process.exit(1);
-    //     }
-
-    //     var comments = JSON.parse(data);
-
-        // NOTE: In a real implementation, we would likely rely on a database or
-        // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
-        // treat Date.now() as unique-enough for our purposes.
-        var newComment = {
-            id: Date.now(),
-            author: req.body.author,
-            text: req.body.text,
-        };
-        var insertDocument = function(db, callback) {
-            console.log('got inside the insertDocument section');
-            db.collection('comments').insertOne(newComment, function(err, result) {
-                console.log('in the insertOne function');
-                if (err) {
-                    console.error(err);
-                    process.exit(1);
-                }
-                console.log('it worked, probably');
-                callback(result);
-            });
+    // NOTE: In a real implementation, we would likely rely on a database or
+    // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
+    // treat Date.now() as unique-enough for our purposes.
+    var newComment = {
+        id: Date.now(),
+        author: req.body.author,
+        text: req.body.text,
+    };
+    
+    db.collection('comments').insertOne(newComment, function(err, result) {
+        if (err) {
+            console.error(err);
+            process.exit(1);
         }
-
-        // comments.push(newComment);
-        // fs.writeFile(COMMENTS_FILE, JSON.stringify(comments, null, 4), function(err) {
-        //     if (err) {
-        //         console.error(err);
-        //         process.exit(1);
-        //     }
-        //     res.json(comments);
-        // });
-    // });
+    });
 });
 
 
-
+// need to have MONGO_PASSWORD set as an environment variable for this to work
 MongoClient.connect('mongodb://cs336:' + process.env.MONGO_PASSWORD + '@ds125381.mlab.com:25381/cs336', function (err, client) {
     if (err) throw err
 
     db = client;
-
-    // db.collection('comments').find().toArray(function (err, result) {
-    //     if (err) throw err
-
-    //     console.log(result)
-    // })
-
 
     app.listen(app.get('port'), function() {
         console.log('Server started: http://localhost:' + app.get('port') + '/');
