@@ -1,0 +1,30 @@
+LAB 10
+
+---- Exercise 10.1 ----
+
+a.) Compare and contrast MongoDB and the SQL databases you’ve used before. Are there things that one can do that the other can’t?
+        SQL databases are better able to handle a set structure and relationality, while NoSQL databases like MongoDB are more flexible. Also, SQL databases are vertically scalable (increase load by increasing CPU/RAM/etc. on one server), whereas NoSQL databases like MongoDB are horizontally scalable (handle more traffic by adding more servers).
+
+
+b.) You could run MongoDB locally. What advantages and/or disadvantages would that bring with respect to the cloud database you have now?
+        Running MongoDB locally would be less scalable than the cloud database. Also, running it locally might be faster for you, but the cloud database would likely be faster for clients (cloud storage site could be geographically closer to them).
+
+
+c.) You’ve built a “sandbox” database on mLab. Could you use this for a production database? Why or why not?
+        Presumably you could, but you shouldn’t. mLab straight-up says in a little warning banner “Sandbox databases do not have redundancy and therefore are not suitable for production.”
+
+
+
+---- Exercise 10.2 ----
+
+a.) For this integration of mLab into your application, was it better to run the modified server (npm start) or the full Webpack development environment (npm run dev)? Why?
+        It’s better to run the full Webpack development environment (npm run dev) because any comments posted from localhost:3000 duplicate themselves every two minutes until the page is reloaded.
+
+
+b.) Explain what happens when you modify the database using mLab’s web interface rather than your application? Try adding/updating/deleting comment documents.
+        The application updates the displayed list of comments accordingly within two seconds (the polling interval).
+
+
+c.) Is this comments application the sort of application that should use an SQL or a noSQL database? Explain your answer.
+        This is the sort of application that should use a noSQL database because it’s faster and more scalable. This application also doesn’t require complex queries and doesn’t need the strict structure or relationality of an SQL database.
+
