@@ -1,0 +1,23 @@
+LAB 11
+
+---- Exercise 11.1 ----
+
+a.) Compare and contrast your development and production deployments and explain how each is designed.
+	The development version of the app required the use of localhost and had to be manually run from the console (i.e. npm start) in order to work, whereas the production version is run elsewhere (some other server somewhere) and is always up and running. The production version is deployed on Heroku and is set up to automatically pull from the production branch on GitHub.
+
+
+b.) List the optimizations you’ve configured for this production version and, if possible, find evidence of then in the deployed application files.
+	OccurenceOrderPlugin() - This orders the modules and chunks by occurrence, giving often-referenced things smaller ids.
+	UglifyJsPlugin() - If you look at bundle.js in the Sources tab in Chrome Developer Tools, you can see that it has been minified.
+
+
+
+---- Exercise 11.2 ----
+
+a.) What advantage is there is deploying an application to a PaaS tool like Heroku?
+	No longer have to manually start/run the app from the console - can just go to the URL and it's always there, and it will automatically pull in updates from GitHub and deploy them
+
+
+b.) How does Heroku know how to install and run your application (after pulling it from the specified branch on GitHub)?
+	The config files and package.json essentially tell it what to do, and it has the mongo password saved as a config variable.
+
