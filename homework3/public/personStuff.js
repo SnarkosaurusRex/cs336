@@ -1,4 +1,5 @@
-
+/* Definitions for the PersonBox, PersonList, PersonForm, and   *
+ *    Person classes, as well as the ReactDOM.render() method   */
 
 var PersonBox = React.createClass({
   loadPeopleFromServer: function() {
@@ -58,12 +59,11 @@ var PersonBox = React.createClass({
 var PersonList = React.createClass({
   render: function() {
     var personNodes = this.props.data.map(function(person) {
+      // I had to make this into one big string so that it wouldn't get rendered with extra commas
+    	var personInfo = "Login ID: " + person.logId + "\nStart Date: " + person.startDate + "\nSeniority: " + person.yrs
       return (
         <Person fname={person.fname} lname={person.lname} logId={person.logId} key={person.fname}>
-          Name: {person.fname}{person.lname}
-          Login ID: {person.logId}
-          Start Date: {person.startDate}
-          Seniority: {person.yrs}
+          {personInfo}
         </Person>
       );
     });
