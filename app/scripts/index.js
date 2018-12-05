@@ -7,14 +7,10 @@ import '../css/base.css';
 import CommentBox from './CommentBox.js';
 
 
-var data = [
-  {id: 1, author: "Pete Hunt", text: "A Møøse once bit my sister..."},
-  {id: 2, author: "Jordan Walke", text: "*No realli!*...Mynd you, møøse bites Kan be pretty nasti..."}
-];
-
-
-//keep this at the bottom of the script
-ReactDOM.render(
-  <CommentBox url="/api/comments" pollInterval={2000} />,
-  document.getElementById('content')
+ReactDOM.render((
+        <Router history={browserHistory}>
+            <Route path="/" component={CommentBox}/>
+            <Route path="/:id" component={CommentEdit}/>
+        </Router>
+    ), document.getElementById('content')
 );
